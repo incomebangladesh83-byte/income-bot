@@ -1,0 +1,26 @@
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import Application, CommandHandler, ContextTypes
+
+TOKEN = "8594604204:AAF9Np7O5xDIK9yB6l9TVe_NXemx7y1Sigs"
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    keyboard = [
+        [InlineKeyboardButton("📢 Channel 1", url="https://t.me/MONEY_INCOME_BANGLADESH")],
+        [InlineKeyboardButton("📢 Channel 2", url="https://t.me/INCOME_BANGLADESH_BALANCE")],
+        [InlineKeyboardButton("👥 Group", url="https://t.me/+V3gXoG39rTRlZTVl")],
+        [InlineKeyboardButton("💰 ইনকাম শুরু করুন", url="https://incomebangladeshmoney.blogspot.com/?m=1")]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    await update.message.reply_text(
+        "👋 স্বাগতম ইনকাম বাংলাদেশ বটে!\n\n👉 প্রথমে আমাদের চ্যানেলগুলো জয়েন করো, তারপর নিচের ইনকাম বাটনে ক্লিক করো 💸",
+        reply_markup=reply_markup
+    )
+
+def main():
+    app = Application.builder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.run_polling()
+
+if __name__ == "__main__":
+    main()
